@@ -13,13 +13,13 @@ By running a single command, you will get a production-ready Node.js app install
 To create a project, simply run:
 
 ```bash
-npx create-nodejs-express-app <project-name>
+npx create-nodejs-express-mongo-app <project-name>
 ```
 
 Or
 
 ```bash
-npm init nodejs-express-app <project-name>
+npm init create-nodejs-express-mongo-app <project-name>
 ```
 
 ## Manual Installation
@@ -29,8 +29,8 @@ If you would still prefer to do the installation manually, follow these steps:
 Clone the repo:
 
 ```bash
-git clone --depth 1 https://github.com/hagopj13/node-express-boilerplate.git
-cd node-express-boilerplate
+git clone --depth 1 https://github.com/abdullahjavaid86/nodejs-express-mongo.git
+cd node-express-mongo
 npx rimraf ./.git
 ```
 
@@ -434,6 +434,7 @@ Contributions are more than welcome! Please check out the [contributing guide](C
 - [danielfsousa/express-rest-es2017-boilerplate](https://github.com/danielfsousa/express-rest-es2017-boilerplate)
 - [madhums/node-express-mongoose](https://github.com/madhums/node-express-mongoose)
 - [kunalkapadia/express-mongoose-es6-rest-api](https://github.com/kunalkapadia/express-mongoose-es6-rest-api)
+- [hagopj13/node-express-boilerplate](https://github.com/hagopj13/node-express-boilerplate.git)
 
 ## License
 
