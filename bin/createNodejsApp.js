@@ -3,6 +3,7 @@ const util = require('util');
 const path = require('path');
 const fs = require('fs');
 const { execSync } = require('child_process');
+const { error } = require('console');
 
 // Utility functions
 const exec = util.promisify(require('child_process').exec);
@@ -85,13 +86,17 @@ async function setup() {
     await runCmd('npx rimraf ./.git');
 
     // Remove extra files
-    fs.unlinkSync(path.join(appPath, 'CHANGELOG.md'));
-    fs.unlinkSync(path.join(appPath, 'CODE_OF_CONDUCT.md'));
-    fs.unlinkSync(path.join(appPath, 'CONTRIBUTING.md'));
-    fs.unlinkSync(path.join(appPath, 'bin', 'createNodejsApp.js'));
-    fs.rmdirSync(path.join(appPath, 'bin'));
-    if (!useYarn) {
-      fs.unlinkSync(path.join(appPath, 'yarn.lock'));
+    try {
+      fs.unlinkSync(path.join(appPath, 'CHANGELOG.md'));
+      fs.unlinkSync(path.join(appPath, 'CODE_OF_CONDUCT.md'));
+      fs.unlinkSync(path.join(appPath, 'CONTRIBUTING.md'));
+      fs.unlinkSync(path.join(appPath, 'bin', 'createNodejsApp.js'));
+      fs.rmdirSync(path.join(appPath, 'bin'));
+      if (!useYarn) {
+        fs.unlinkSync(path.join(appPath, 'yarn.lock'));
+      }
+    } catch (e) {
+      console.error(e);
     }
 
     console.log('Installation is now complete!');
