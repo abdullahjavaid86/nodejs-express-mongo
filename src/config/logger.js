@@ -9,17 +9,20 @@ const enumerateErrorFormat = winston.format((info) => {
 });
 
 const logger = winston.createLogger({
-  level: config.env === 'development' ? 'debug' : 'info',
-  format: winston.format.combine(
-    enumerateErrorFormat(),
-    config.env === 'development' ? winston.format.colorize() : winston.format.uncolorize(),
-    winston.format.splat(),
-    winston.format.printf(({ level, message }) => `${level}: ${message}`)
-  ),
+  level: 'debug',
+  format: winston.format.errors({ stack: true }),
   transports: [
     new winston.transports.Console({
-      stderrLevels: ['error'],
+      format: winston.format.combine(
+        enumerateErrorFormat(),
+        config.env === 'development' ? winston.format.colorize() : winston.format.uncolorize(),
+        winston.format.splat(),
+        winston.format.printf(({ level, message }) => `${level}: ${message}`)
+      ),
     }),
+    // new winston.transports.Console({
+    //   stderrLevels: ['error'],
+    // }),
   ],
 });
 

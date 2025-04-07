@@ -30,6 +30,7 @@ const updateUser = catchAsync(async (req, res) => {
 });
 
 const deleteUser = catchAsync(async (req, res) => {
+  if (req.user._id.toString() === req.params.userId) throw new ApiError(httpStatus.FORBIDDEN, 'Forbidden');
   await userService.deleteUserById(req.params.userId);
   res.status(httpStatus.NO_CONTENT).send();
 });
